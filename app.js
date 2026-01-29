@@ -1,15 +1,47 @@
 const btnAgregar = document.querySelector("#btnAgregar");
-const formulario = document.querySelector("#formulario");
+const inputTarea = document.querySelector("#inputTareas");
+const listaTareas = document.querySelector(".listaTareas");
 
-const listaTareas = document.querySelector("#hola");
+function crearTareas() {
+    const tarea = inputTarea.value.trim();
+    if (tarea === "") {
+        return;
+    }
+    const listaAgregada = document.createElement("li");
+    listaAgregada.innerHTML = `${tarea} <button id = "check">COMPLETAR </button> <button id = "delete">BORRAR</button>`;
+    const check = listaAgregada.querySelector("#check");
+    const borrar = listaAgregada.querySelector("#delete");
+
+    check.addEventListener("click", function () {
+        marcarCompletado(listaAgregada);
+    });
+    borrar.addEventListener("click", function () {
+        borrarTarea(listaAgregada);
+    });
+
+    return listaAgregada;
+}
+function mostrarLista(nuevaTarea) {
+    listaTareas.appendChild(nuevaTarea);
+}
+function borrarTarea(tarea) {
+
+    tarea.remove();
 
 
-btnAgregar.addEventListener('click',function (event) {
+}
+function marcarCompletado(tarea) {
+
+    tarea.classList.toggle("completada");
+}
+
+btnAgregar.addEventListener('click', function (event) {
     event.preventDefault();
-    let inputTarea = document.querySelector("#inputTareas").value;
-    listaTareas.innerhtml += `<li>${inputTarea}</li>`;
-    console.log("aknd");
+    const creacionTareas = crearTareas();
+    mostrarLista(creacionTareas);
+
 });
+
 
 
 

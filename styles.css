@@ -54,7 +54,7 @@ h1 {
   border-radius: 4px;
 }
 
-.lista li.completada {
+.listaTareas li.completada {
   text-decoration: line-through;
   color: gray;
 }
